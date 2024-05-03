@@ -1,0 +1,41 @@
+.double-row-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  align-items: center;
+}
+
+.double-row {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  gap: 2px;
+  margin-top: 5px;
+
+  .cell {
+    width: 50%;
+    height: 100%;
+    border: 2px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &.win {
+      border: 2px solid green;
+    }
+
+    &.lose {
+      border: 2px solid red;
+    }
+
+    @media (max-width: 600px) {
+      cursor: default;
+    }
+  }
+
+  &.fill {
+    div {
+      background-color: gray;
+    }
+  }
+}

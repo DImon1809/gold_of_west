@@ -1,0 +1,13 @@
+.amount-table {
+  position: fixed;
+  right: 20px;
+  top: 10px;
+
+  h3 {
+    margin: 0;
+
+    @media (max-width: 450px) {
+      font-size: 14px;
+    }
+  }
+}

@@ -24,7 +24,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Game</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +39,43 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", async () => {
+          navigator.serviceWorker
+            .register("./serviceWorker.js")
+            .then((registration) => {
+              registration.onupdatefound = () => {
+                const installingWorker = registration.installing;
+
+                installingWorker.onstatechange = () => {
+                  if (
+                    installingWorker.state === "installed" &&
+                    navigator.serviceWorker.controller
+                  ) {
+                    console.log(
+                      "Новая версия доступна. Обновление serviceWorker..."
+                    );
+
+                    installingWorker.postMessage({ action: "skipWaiting" });
+                  }
+                };
+              };
+            })
+            .catch((err) =>
+              console.error("Ошибка регистрации serviceWorker: ", err)
+            );
+
+          navigator.serviceWorker.addEventListener("message", (event) => {
+            if (event.data && event.data.action === "reloadPage") {
+              console.log("Перезагрузка страницы...");
+
+              window.location.reload();
+            }
+          });
+        });
+      }
+    </script>
   </body>
 </html>

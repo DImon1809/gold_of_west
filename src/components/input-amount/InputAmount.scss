@@ -1,0 +1,109 @@
+.input-alert {
+  width: 300px;
+  height: 200px;
+  background-color: rgba(128, 128, 128, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0px 1px 2px black;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: 1.3s run-on-bottom linear 0s;
+
+  .text-alert-wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+      margin: 0;
+    }
+
+    &.error {
+      color: red;
+    }
+  }
+
+  .input-wrapper {
+    input {
+      background-color: transparent;
+      outline: none;
+      border: none;
+      border-bottom: 2px solid gray;
+    }
+  }
+
+  .button-wrapper {
+    display: flex;
+    gap: 10px;
+
+    .action-button {
+      background-color: rgba(123, 104, 238, 0.5);
+      border: none;
+      width: 150px;
+      height: 50px;
+      border-radius: 20px;
+      box-shadow: 0px 1px 2px black;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+
+      @media (hover: hover) {
+        &:hover {
+          transform: translateY(-6px);
+        }
+      }
+
+      &:active {
+        opacity: 0.6;
+        box-shadow: none;
+      }
+
+      &.deposit {
+        width: 120px;
+        height: 40px;
+      }
+
+      @media (max-width: 600px) {
+        cursor: default;
+      }
+    }
+  }
+
+  &.close {
+    animation: 1.4s run-on-top linear 0s;
+  }
+
+  &.create-deposit {
+    gap: 20px;
+  }
+
+  &.create-deposit.close {
+    animation: 1.4s run-on-top linear 0s;
+  }
+}
+
+@keyframes run-on-bottom {
+  from {
+    transform: translate(-50%, -200%);
+  }
+
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes run-on-top {
+  from {
+    transform: translate(-50%, 0);
+  }
+
+  to {
+    transform: translate(-50%, -200%);
+  }
+}
